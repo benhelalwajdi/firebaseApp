@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">firebaseApp</string>
+    <string name="exemple_live_fr">exemple@live.fr</string>
+    <string name="password">password</string>
+    <string name="login">login</string>
+    <string name="register">Register</string>
+</resources>
