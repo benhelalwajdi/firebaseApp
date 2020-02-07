@@ -11,7 +11,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     private var register_btn: Button? =null
     private var login_btn: Button?= null
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
 
 
         register_btn = findViewById(R.id.register);
@@ -60,5 +60,10 @@ class MainActivity : AppCompatActivity() {
                 }
             });
         }
+    }
+
+
+    private fun loginUser(){
+        /*TODO Login User*/
     }
 }
