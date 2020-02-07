@@ -1,8 +1,10 @@
 package com.wbh.firebaseapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -32,22 +34,23 @@ class LoginActivity : AppCompatActivity() {
 
 
         register_btn?.setOnClickListener {
-            registerNewUser()
+            registerAction()
         }
 
-
-
+        login_btn?.setOnClickListener {
+            loginAction()
+        }
     }
 
-    private fun registerNewUser() {
+    private fun registerAction() {
         var email_text = email?.text.toString().trim()
         var password_text = password?.text.toString().trim()
 
         if (TextUtils.isEmpty(email_text)){
-            Toast.makeText(applicationContext,"this field is empty", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"Email this field is empty", Toast.LENGTH_LONG).show()
         }
         else if (TextUtils.isEmpty(password_text)){
-            Toast.makeText(applicationContext,"this field is empty", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"Password this field is empty", Toast.LENGTH_LONG).show()
         }else {
             firebaseAuth?.createUserWithEmailAndPassword(email_text,password_text)?.addOnCompleteListener(object: OnCompleteListener<AuthResult>{
                 override fun onComplete(p0: Task<AuthResult>) {
@@ -62,8 +65,29 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun loginAction(){
+        var email_text = email?.text.toString().trim()
+        var password_text = password?.text.toString().trim()
 
-    private fun loginUser(){
-        /*TODO Login User*/
+        if (TextUtils.isEmpty(email_text)){
+            Toast.makeText(applicationContext,"Email field is empty", Toast.LENGTH_LONG).show()
+        }
+        else if (TextUtils.isEmpty(password_text)){
+            Toast.makeText(applicationContext,"Password field is empty", Toast.LENGTH_LONG).show()
+        }else {
+            firebaseAuth?.signInWithEmailAndPassword(email_text,password_text)?.addOnCompleteListener(object: OnCompleteListener<AuthResult>{
+                override fun onComplete(p0: Task<AuthResult>) {
+                    if (p0.isSuccessful){
+                        Toast.makeText(applicationContext,"You are logedin successfuly", Toast.LENGTH_LONG).show()
+                        startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+                        this@LoginActivity.onDestroy()
+                    }else{
+                        val error = p0.exception?.message
+                        Toast.makeText(applicationContext,error.toString(),Toast.LENGTH_LONG).show()
+                    }
+                }
+            });
+        }
+
     }
 }
