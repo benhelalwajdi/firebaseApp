@@ -33,7 +33,10 @@ class UserService {
 
         val sharedPref: SharedPreferences
         sharedPref = ctx.getSharedPreferences(PREF_NAME, this.PRIVATE_MODE)
-        if (sharedPref.getBoolean(PREF_NAME, false)) {
+
+        Log.d("User Connected", sharedPref.getBoolean(PREF_NAME, false).toString())
+
+        if (!sharedPref.getBoolean(PREF_NAME, false)) {
             if (TextUtils.isEmpty(email_text)) {
                 Toast.makeText(ctx, "Email field is empty", Toast.LENGTH_LONG).show()
             } else if (TextUtils.isEmpty(password_text)) {
@@ -63,6 +66,8 @@ class UserService {
             var i: Intent = Intent(ctx.applicationContext, MainActivity::class.java)
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             ctx.startActivity(i)
+            editor.putBoolean(PREF_NAME, false)
+            editor.apply()
         }
 
 
@@ -93,5 +98,19 @@ class UserService {
                     }
                 });
         }
+    }
+
+
+    public fun logOutAction(
+        firebaseAuth: FirebaseAuth,
+        ctx: Context
+    ) {
+        val sharedPref: SharedPreferences
+        sharedPref = ctx.getSharedPreferences(PREF_NAME, this.PRIVATE_MODE)
+        val editor = sharedPref.edit()
+        editor.putBoolean(PREF_NAME, false)
+        editor.apply()
+        firebaseAuth.signOut();
+
     }
 }
