@@ -85,8 +85,8 @@ class UserService {
         } else if (TextUtils.isEmpty(password_text)) {
             Toast.makeText(ctx, "Password this field is empty", Toast.LENGTH_LONG).show()
         } else {
-            firebaseAuth?.createUserWithEmailAndPassword(email_text, password_text)
-                ?.addOnCompleteListener(object : OnCompleteListener<AuthResult> {
+            firebaseAuth.createUserWithEmailAndPassword(email_text, password_text)
+                .addOnCompleteListener(object : OnCompleteListener<AuthResult> {
                     override fun onComplete(p0: Task<AuthResult>) {
                         if (p0.isSuccessful) {
                             Toast.makeText(ctx, "Account Created", Toast.LENGTH_LONG).show()
