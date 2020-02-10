@@ -4,4 +4,6 @@
     <string name="password">password</string>
     <string name="login">login</string>
     <string name="register">Register</string>
+    <string name="original_name">Original name</string>
+    <string name="date_air">date on air</string>
 </resources>
