@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.MainActivity"></activity>
+        <activity android:name=".Activity.DetailsActivity"></activity>
+        <activity android:name=".Activity.RegisterActivity" />
+        <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.resetPasswordActivity" />
         <activity android:name=".Activity.LoginActivity">
             <intent-filter>

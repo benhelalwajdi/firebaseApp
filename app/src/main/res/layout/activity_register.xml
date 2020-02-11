@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_medium"
-                android:text="Welcome In FIREBASE APP,"
+                android:text="Welcome In FIREBASE APP"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textColor="@color/blue_grey_800"
                 android:textStyle="bold" />
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_medium"
-                android:text="Sign in to continue"
+                android:text="Sign Up to continue"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 android:textColor="@color/blue_grey_300"
                 android:textStyle="bold" />
@@ -102,36 +102,19 @@
                 android:textColor="@color/blue_grey_300"
                 android:theme="@style/Widget.AppCompat.EditText" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="@dimen/spacing_middle" />
-
-            <TextView
-                android:id="@+id/forgot_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|end"
-                android:layout_marginTop="@dimen/spacing_medium"
-                android:clickable="true"
-
-                android:text="Forgot Password?"
-                android:textAlignment="center"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                android:textColor="@color/blue_grey_400"
-                android:textStyle="bold" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="@dimen/spacing_large" />
 
             <Button
-                android:id="@+id/login"
+                android:id="@+id/register"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginLeft="-4dp"
                 android:layout_marginRight="-4dp"
                 android:background="@color/brown_700"
-                android:text="Login"
+                android:text="Sign Up"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
@@ -150,15 +133,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New user? "
+                    android:text="Your already have account ? "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                     android:textColor="@color/blue_grey_300" />
 
                 <Button
-                    android:id="@+id/register"
+                    android:id="@+id/login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sign Up"
+                    android:text="Login"
                     android:background="@color/amber_50"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                     android:textColor="@color/brown_700"
