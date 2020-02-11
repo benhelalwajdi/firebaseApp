@@ -3,18 +3,16 @@ package com.wbh.firebaseapp.Activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import com.wbh.firebaseapp.Adapter.Adapter
 import com.wbh.firebaseapp.Constant.Constant
 import com.wbh.firebaseapp.Interfaces.MovieApi
-import com.wbh.firebaseapp.Model.Movie
 import com.wbh.firebaseapp.R
-import kotlinx.android.synthetic.main.activity_details.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,6 +31,8 @@ class DetailsActivity : AppCompatActivity() {
     lateinit var seasons : TextView
     lateinit var popularity :TextView
     lateinit var production_companies:TextView
+    lateinit var image :ImageView
+    var c:String = ""
 
     lateinit var overview : TextView
 
@@ -48,12 +48,13 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
         val id = intent.getStringExtra("id")
+        c = intent.getStringExtra("url")
         val Entitys = service.getDetailsMovie(id,Constant().api)
-        Toast.makeText(this, id, Toast.LENGTH_SHORT).show()
-        setValues(Entitys)
+        //Toast.makeText(this, id, Toast.LENGTH_SHORT).show()
+        setValues(Entitys,c)
     }
 
-    private fun setValues(Entitys:Call<JsonObject>) {
+    private fun setValues(Entitys: Call<JsonObject>, c: String?) {
         Entitys.enqueue(object : Callback<JsonObject> {
             @SuppressLint("SetTextI18n")
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
@@ -65,6 +66,7 @@ class DetailsActivity : AppCompatActivity() {
                 original_name = findViewById(R.id.original_name)
                 popularity = findViewById(R.id.popularity)
                 seasons = findViewById(R.id.season)
+                image = findViewById(R.id.image)
 
                 original_name.text = response.body()?.getAsJsonPrimitive("original_name").toString()
                 name.text = response.body()?.getAsJsonPrimitive("name").toString()
@@ -79,10 +81,21 @@ class DetailsActivity : AppCompatActivity() {
                 popularity.text = response.body()?.getAsJsonPrimitive("popularity").toString()
 
                 jsonArray = response.body()?.getAsJsonArray("production_companies")
-                jsonObject = jsonArray?.get(0)?.asJsonObject
-                production_companies.text = jsonObject?.get("name").toString()
-
+                if (jsonArray!!.size()!= 0) {
+                    jsonObject = jsonArray?.get(0)?.asJsonObject
+                    production_companies.text = jsonObject?.get("name").toString()
+                }else
+                {
+                    production_companies.text = "There is no name "
+                }
                 overview.text = response.body()?.getAsJsonPrimitive("overview").toString()
+
+
+                Log.d("Image" , this@DetailsActivity.c)
+                Glide.with(this@DetailsActivity)
+                    .load(c)
+                    .into(image)
+
 
             }
 
