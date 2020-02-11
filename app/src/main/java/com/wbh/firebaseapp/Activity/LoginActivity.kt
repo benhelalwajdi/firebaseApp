@@ -1,5 +1,6 @@
 package com.wbh.firebaseapp.Activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -33,9 +34,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         register_btn?.setOnClickListener {
-            var email_text = email?.text.toString().trim()
-            var password_text = password?.text.toString().trim()
-            UserService().registerAction(email_text,password_text, firebaseAuth!!,this.applicationContext)
+            startActivity(Intent(this@LoginActivity,RegisterActivity::class.java))
         }
 
         login_btn?.setOnClickListener {
