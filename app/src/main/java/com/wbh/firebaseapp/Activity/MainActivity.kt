@@ -12,6 +12,7 @@ import com.wbh.firebaseapp.Interfaces.MovieApi
 import com.wbh.firebaseapp.Model.Movie
 import com.wbh.firebaseapp.R
 import com.wbh.firebaseapp.Adapter.Adapter
+import com.wbh.firebaseapp.Constant.Constant
 import com.wbh.firebaseapp.Services.UserService
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,14 +27,14 @@ class MainActivity : AppCompatActivity() {
     internal var androidRecyclerView: RecyclerView? = null
     internal var androidList: MutableList<Movie>? = null
     internal var customAdapter: Adapter? = null
-    private val tanUrl = "https://api.themoviedb.org"
+
     val retrofit = Retrofit.Builder()
-        .baseUrl(tanUrl)
+        .baseUrl(Constant().Url)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     val service = retrofit.create(MovieApi::class.java)
-    val Entitys = service.getMovies()
+    val Entitys = service.getTvPopular(Constant().api)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
