@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                             aa.asJsonObject.get("vote_count").toString(),aa.asJsonObject.get("first_air_date").toString(),
                             aa.asJsonObject.get("backdrop_path").toString(),aa.asJsonObject.get("original_language").asString,
                             aa.asJsonObject.get("id").toString(),aa.asJsonObject.get("vote_average").asString,
-                            aa.asJsonObject.get("overview").toString(),aa.asJsonObject.get("poster_path").toString()))
+                            aa.asJsonObject.get("overview").toString(),aa.asJsonObject.get("poster_path").asString))
                     customAdapter = Adapter(this@MainActivity, androidList!!)
                     val mLayoutManager = LinearLayoutManager(applicationContext)
                     androidRecyclerView!!.layoutManager = mLayoutManager

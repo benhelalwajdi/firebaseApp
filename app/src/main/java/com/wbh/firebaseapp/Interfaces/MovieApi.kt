@@ -14,4 +14,5 @@ interface MovieApi {
 
     @GET("/3/tv/{id}")
     fun getDetailsMovie(@Path("id") id: String,@Query("api_key") api: String) : Call<JsonObject>
+
 }
