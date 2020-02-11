@@ -1,6 +1,7 @@
 package com.wbh.firebaseapp.Model
 
 import com.google.gson.JsonArray
+import java.io.Serializable
 
 class Movie(
     var original_name: String?, var genre_ids: JsonArray,
@@ -9,5 +10,5 @@ class Movie(
     var backdrop_path: String?, var original_language: String,
     var id: String?, var vote_average: String,
     var overview: String?, var poster_path: String?
-) {
+) : Serializable {
 }
