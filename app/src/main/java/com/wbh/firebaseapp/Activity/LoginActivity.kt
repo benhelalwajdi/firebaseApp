@@ -33,13 +33,17 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
 
+        var email_text = email?.text.toString().trim()
+        var password_text = password?.text.toString().trim()
+        UserService().loginAction(email_text,password_text, firebaseAuth!!,this.applicationContext)
+
         register_btn?.setOnClickListener {
             startActivity(Intent(this@LoginActivity,RegisterActivity::class.java))
         }
 
         login_btn?.setOnClickListener {
-            var email_text = email?.text.toString().trim()
-            var password_text = password?.text.toString().trim()
+             email_text = email?.text.toString().trim()
+             password_text = password?.text.toString().trim()
             UserService().loginAction(email_text,password_text, firebaseAuth!!,this.applicationContext)
         }
     }
